@@ -1,0 +1,29 @@
+<configuration>
+
+    <!-- 📁 Log file location -->
+    <property name="LOG_PATH" value="logs"/>
+
+    <!-- 📝 File Appender -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/account-service.log</file>
+
+        <!-- 🔁 Rolling policy -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily log -->
+            <fileNamePattern>${LOG_PATH}/account-service.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+            <!-- keep only last 5 days -->
+            <maxHistory>5</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 🚀 Root logger -->
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>
